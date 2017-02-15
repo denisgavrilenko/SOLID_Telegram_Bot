@@ -1,0 +1,77 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{036AFFAD-8EF5-475C-BE45-B2A103DD60EA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BecomeSolid.My</RootNamespace>
+    <AssemblyName>BecomeSolid.My</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="CommandHandlers\DefaultCommandHandler.cs" />
+    <Compile Include="CommandHandlers\WeatherCommandHandler.cs" />
+    <Compile Include="CommandProducer\ICommandProducer.cs" />
+    <Compile Include="CommandProducer\TelegramCommandProducer.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\TelegramSimpleCommand.cs" />
+    <Compile Include="CommandExecutor\ICommandExecutor.cs" />
+    <Compile Include="CommandExecutor\CommandExecutor.cs" />
+    <Compile Include="Services\WeatherService.cs" />
+    <Compile Include="Services\Response\WeatherResponse.cs" />
+    <Compile Include="Services\Response\CurrentWeather.cs" />
+    <Compile Include="Services\Weather.cs" />
+    <Compile Include="Output\IOutput.cs" />
+    <Compile Include="Output\TelegramOutput.cs" />
+    <Compile Include="Container\Container.cs" />
+    <Compile Include="Container\ContainerContract.cs" />
+    <Compile Include="Container\TelegramContainer.cs" />
+    <Compile Include="Container\IContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Telegram.Bot">
+      <HintPath>..\packages\Telegram.Bot.10.4.0\lib\net45\Telegram.Bot.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CommandHandlers\" />
+    <Folder Include="CommandProducer\" />
+    <Folder Include="Command\" />
+    <Folder Include="CommandExecutor\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Response\" />
+    <Folder Include="Output\" />
+    <Folder Include="Container\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
